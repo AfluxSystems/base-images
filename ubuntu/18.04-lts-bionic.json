@@ -1,0 +1,25 @@
+{
+    "variables": {
+        "build_region": ""
+      },
+    "builders": [
+        {
+            "ami_name": "liederbach-base-ubuntu-18.04-{{timestamp}}",
+            "ami_description": "Base Ubuntu 18.04 AMI",
+            "region": "{{user `build_region`}}",
+            "type": "amazon-ebs",
+            "instance_type": "t2.small",
+            "source_ami_filter": {
+                "filters": {
+                    "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
+                    "virtualization-type": "hvm",
+                    "root-device-type": "ebs"
+                },
+                "owners": ["099720109477"],
+                "most_recent": true
+            },
+            "ssh_username": "ubuntu",
+            "encrypt_boot": true
+        }
+    ]
+}
